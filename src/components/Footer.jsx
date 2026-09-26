@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import { useLang } from '../context/LanguageContext.jsx'
 
 const COMPANY = [
   { label: 'About Us', to: '/' },
@@ -62,6 +63,8 @@ const SOCIAL = [
 ]
 
 export default function Footer() {
+  const { t } = useLang()
+
   return (
     <footer className="bg-text-primary text-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
@@ -75,10 +78,10 @@ export default function Footer() {
               </span>
             </div>
             <p className="text-[7px] font-semibold tracking-[0.12em] uppercase text-white/50 mb-4">
-              5 Swipes. One Right Person.
+              {t.footer.tagline}
             </p>
             <p className="text-sm text-white/50 leading-relaxed mb-6 max-w-xs">
-              India's most intentional dating app — built for meaningful, verified connections.
+              {t.footer.description}
             </p>
             <div className="flex items-center gap-3">
               {SOCIAL.map(({ label, href, icon }) => (
@@ -121,8 +124,8 @@ export default function Footer() {
         {/* Newsletter */}
         <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
           <div>
-            <p className="text-sm font-semibold text-white mb-1">Stay Updated</p>
-            <p className="text-xs text-white/50">Get early access updates and exclusive offers.</p>
+            <p className="text-sm font-semibold text-white mb-1">{t.footer.newsletter}</p>
+            <p className="text-xs text-white/50">{t.footer.newsletterSub}</p>
           </div>
           <form
             className="flex gap-2 w-full md:w-auto"
@@ -130,7 +133,7 @@ export default function Footer() {
           >
             <input
               type="email"
-              placeholder="Enter your email"
+              placeholder={t.footer.emailPlaceholder}
               aria-label="Email for newsletter"
               className="px-4 py-2.5 rounded-lg bg-white/10 border border-white/20 text-white placeholder-white/40 text-sm outline-none focus:border-rose transition-colors w-full md:w-60 font-sans"
             />
@@ -138,14 +141,14 @@ export default function Footer() {
               type="submit"
               className="px-5 py-2.5 bg-rose text-white rounded-lg text-sm font-semibold hover:bg-rose-dark transition-colors whitespace-nowrap"
             >
-              Notify Me
+              {t.footer.notifyMe}
             </button>
           </form>
         </div>
 
         <div className="border-t border-white/10 mt-8 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="text-xs text-white/30">© 2024 ONE Dating App. All rights reserved.</p>
-          <p className="text-xs text-white/30">Made with ♡ in India</p>
+          <p className="text-xs text-white/30">{t.footer.copyright}</p>
+          <p className="text-xs text-white/30">{t.footer.madeIn}</p>
         </div>
       </div>
     </footer>

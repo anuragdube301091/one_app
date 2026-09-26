@@ -1,13 +1,14 @@
 import { useState, useRef, useEffect } from 'react'
 import { Link, NavLink, useLocation } from 'react-router-dom'
 import LanguageSwitcher from './LanguageSwitcher.jsx'
+import { useLang } from '../context/LanguageContext.jsx'
 
 const NAV_LINKS = [
-  { to: '/dating', label: 'Dating' },
-  { to: '/travel-buddy', label: 'Travel Buddy' },
-  { to: '/party-buddy', label: 'Party Buddy' },
-  { to: '/safety', label: 'Safety' },
-  { to: '/membership', label: 'Membership' },
+  { to: '/dating', key: 'dating' },
+  { to: '/travel-buddy', key: 'travelBuddy' },
+  { to: '/party-buddy', key: 'partyBuddy' },
+  { to: '/safety', key: 'safety' },
+  { to: '/membership', key: 'membership' },
 ]
 
 const AppleIcon = ({ size = 18 }) => (
@@ -177,6 +178,7 @@ export default function Navbar() {
   const [open, setOpen] = useState(false)
   const location = useLocation()
   const isHome = location.pathname === '/'
+  const { t } = useLang()
 
   return (
     <header className="sticky top-0 z-50 bg-white border-b border-border-rose shadow-sm">
@@ -204,7 +206,7 @@ export default function Navbar() {
 
         {/* Desktop nav links */}
         <ul className="hidden lg:flex items-center gap-1 list-none m-0 p-0">
-          {NAV_LINKS.map(({ to, label }) => (
+          {NAV_LINKS.map(({ to, key }) => (
             <li key={to}>
               <NavLink
                 to={to}
@@ -216,7 +218,7 @@ export default function Navbar() {
                   }`
                 }
               >
-                {label}
+                {t.nav[key]}
               </NavLink>
             </li>
           ))}
@@ -234,7 +236,7 @@ export default function Navbar() {
               document.getElementById('register')?.scrollIntoView({ behavior: 'smooth' })
             } : undefined}
           >
-            Join ONE →
+            {t.nav.joinOne} →
           </Link>
         </div>
 
@@ -261,7 +263,7 @@ export default function Navbar() {
       {open && (
         <div className="md:hidden border-t border-border-rose bg-white animate-fade-in">
           <ul className="flex flex-col px-4 py-3 gap-1 list-none m-0 p-0">
-            {NAV_LINKS.map(({ to, label }) => (
+            {NAV_LINKS.map(({ to, key }) => (
               <li key={to}>
                 <NavLink
                   to={to}
@@ -272,7 +274,7 @@ export default function Navbar() {
                     }`
                   }
                 >
-                  {label}
+                  {t.nav[key]}
                 </NavLink>
               </li>
             ))}
@@ -286,7 +288,7 @@ export default function Navbar() {
                 onClick={() => setOpen(false)}
                 className="btn-rose flex-1 text-center py-3 text-[14px]"
               >
-                Join ONE →
+                {t.nav.joinOne} →
               </Link>
             </li>
           </ul>

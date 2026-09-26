@@ -1,10 +1,11 @@
 import { Link } from 'react-router-dom'
 import { useRef, useEffect } from 'react'
+import { useLang } from '../context/LanguageContext.jsx'
 
 const CATEGORIES = [
   {
     to: '/dating',
-    label: 'Dating',
+    key: 'dating',
     description: 'Verified matches tailored to your values and lifestyle.',
     bg: 'from-[#F9C8DB] via-[#F4A8C0] to-[#E8809A]',
     iconBg: 'bg-rose',
@@ -16,7 +17,7 @@ const CATEGORIES = [
   },
   {
     to: '/travel-buddy',
-    label: 'Travel Buddy',
+    key: 'travelBuddy',
     description: 'Find someone who shares your wanderlust and adventure spirit.',
     bg: 'from-[#B5D8FF] via-[#7CB9F0] to-[#4A9ED8]',
     iconBg: 'bg-coral',
@@ -28,7 +29,7 @@ const CATEGORIES = [
   },
   {
     to: '/party-buddy',
-    label: 'Party Buddy',
+    key: 'partyBuddy',
     description: 'Connect with people who love the same social scene as you.',
     bg: 'from-[#E8C8F0] via-[#D4A8E8] to-[#B880D0]',
     iconBg: 'bg-coral',
@@ -42,6 +43,7 @@ const CATEGORIES = [
 
 export default function CategoryCards() {
   const gridRef = useRef(null)
+  const { t } = useLang()
 
   useEffect(() => {
     const el = gridRef.current
@@ -63,10 +65,10 @@ export default function CategoryCards() {
       <div className="max-w-7xl mx-auto">
         <div className="flex items-end justify-between mb-10 flex-wrap gap-4">
           <div>
-            <p className="section-eyebrow mb-3">Explore Connections</p>
+            <p className="section-eyebrow mb-3">{t.categories.eyebrow}</p>
             <h2 className="section-title">
-              More than just
-              <span className="italic text-rose block">dating.</span>
+              {t.categories.title}
+              <span className="italic text-rose block">{t.categories.titleItalic}</span>
             </h2>
           </div>
           <p className="section-body max-w-xs text-right hidden sm:block">
@@ -75,7 +77,9 @@ export default function CategoryCards() {
         </div>
 
         <div ref={gridRef} className="reveal-stagger grid grid-cols-1 sm:grid-cols-3 gap-5">
-          {CATEGORIES.map(({ to, label, description, bg, iconBg, icon }) => (
+          {CATEGORIES.map(({ to, key, description, bg, iconBg, icon }) => {
+            const label = t.categories[key]
+            return (
             <Link
               key={to}
               to={to}
@@ -113,7 +117,8 @@ export default function CategoryCards() {
                 </div>
               </div>
             </Link>
-          ))}
+            )
+          })}
         </div>
       </div>
     </section>

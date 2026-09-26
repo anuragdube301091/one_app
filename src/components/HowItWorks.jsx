@@ -1,4 +1,5 @@
 import { useRef, useEffect } from 'react'
+import { useLang } from '../context/LanguageContext.jsx'
 
 const STEPS = [
   {
@@ -45,6 +46,7 @@ const STEPS = [
 
 export default function HowItWorks() {
   const gridRef = useRef(null)
+  const { t } = useLang()
 
   useEffect(() => {
     const el = gridRef.current
@@ -65,14 +67,12 @@ export default function HowItWorks() {
     <section className="py-20 px-4 sm:px-6 lg:px-8 bg-white">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-14">
-          <p className="section-eyebrow justify-center mb-3">How ONE Works</p>
+          <p className="section-eyebrow justify-center mb-3">{t.howItWorks.eyebrow}</p>
           <h2 className="section-title mb-4">
-            Intentional by design.
-            <span className="italic text-rose block">Meaningful by choice.</span>
+            {t.howItWorks.title}
+            <span className="italic text-rose block">{t.howItWorks.titleItalic}</span>
           </h2>
-          <p className="section-body max-w-xl mx-auto">
-            We built ONE around a simple conviction: less choice leads to better choices. Every feature serves one goal — helping you find the right person.
-          </p>
+          <p className="section-body max-w-xl mx-auto">{t.howItWorks.body}</p>
         </div>
 
         <div ref={gridRef} className="reveal-stagger grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">

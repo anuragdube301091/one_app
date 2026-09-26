@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import Navbar from '../components/Navbar.jsx'
 import Footer from '../components/Footer.jsx'
 import { useScrollReveal } from '../hooks/useScrollReveal.js'
@@ -82,6 +82,13 @@ export default function ExploreGifts() {
   const cardsRef = useScrollReveal({ threshold: 0.05 })
   const partnersRef = useScrollReveal()
   const { t } = useLang()
+  const navigate = useNavigate()
+
+  function goToEarlyAccess() {
+    navigate('/')
+    // Home must mount before #register exists
+    setTimeout(() => document.getElementById('register')?.scrollIntoView({ behavior: 'smooth' }), 150)
+  }
 
   return (
     <div className="min-h-screen flex flex-col bg-ivory">
@@ -226,17 +233,12 @@ export default function ExploreGifts() {
             <p className="text-white/50 text-sm mb-8 leading-relaxed">
               Join the waitlist and be the first to experience ONE — the app where gifts make connections real.
             </p>
-            <Link
-              to="/"
-              onClick={(e) => {
-                e.preventDefault()
-                window.scrollTo(0, 0)
-                setTimeout(() => document.getElementById('register')?.scrollIntoView({ behavior: 'smooth' }), 100)
-              }}
+            <button
+              onClick={goToEarlyAccess}
               className="inline-block bg-rose text-white font-semibold rounded-xl px-8 py-4 text-[15px] hover:bg-rose-dark transition-colors"
             >
               Get Early Access →
-            </Link>
+            </button>
           </div>
         </section>
       </main>

@@ -1,4 +1,5 @@
 import RegistrationForm from './RegistrationForm.jsx'
+import { useLang } from '../context/LanguageContext.jsx'
 
 const FEATURES = [
   {
@@ -51,6 +52,8 @@ const AVATARS = [
 ]
 
 export default function HeroSection() {
+  const { t } = useLang()
+
   return (
     <section className="bg-ivory overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-20">
@@ -62,18 +65,18 @@ export default function HeroSection() {
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-border-rose bg-rose-light mb-6">
               <span className="w-1.5 h-1.5 bg-rose rounded-full animate-pulse-dot" />
               <span className="text-xs font-semibold tracking-wider uppercase text-rose">
-                Coming Soon · Advance Registration Open
+                {t.hero.eyebrow}
               </span>
             </div>
 
             {/* Headline */}
             <h1 className="font-display text-text-primary mb-5" style={{ fontSize: 'clamp(44px, 5.5vw, 72px)', lineHeight: 1.02, letterSpacing: '-0.025em' }}>
-              5 Swipes.{' '}
-              <span className="block italic text-rose">One Right Person.</span>
+              {t.hero.headline}{' '}
+              <span className="block italic text-rose">{t.hero.headlineItalic}</span>
             </h1>
 
             <p className="section-body max-w-md mb-8" style={{ fontSize: '16px' }}>
-              India's most intentional dating app for meaningful, verified connections — not endless swiping into the void.
+              {t.hero.subtext}
             </p>
 
             {/* Feature pills */}
@@ -106,8 +109,8 @@ export default function HeroSection() {
                 </div>
               </div>
               <div className="text-sm text-text-mid leading-snug">
-                <span className="font-semibold text-text-primary block">4,000+ ambitious singles</span>
-                waiting for something real — across India
+                <span className="font-semibold text-text-primary block">{t.hero.socialProof}</span>
+                {t.hero.socialProofSub}
               </div>
             </div>
           </div>
