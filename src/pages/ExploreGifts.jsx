@@ -112,18 +112,7 @@ export default function ExploreGifts() {
             </p>
 
             <div className="flex items-center justify-center gap-3 flex-wrap">
-              <Link
-                to="/"
-                onClick={(e) => {
-                  e.preventDefault()
-                  window.scrollTo(0, 0)
-                  setTimeout(() => document.getElementById('register')?.scrollIntoView({ behavior: 'smooth' }), 100)
-                }}
-                className="btn-rose px-7 py-3.5 text-[15px]"
-              >
-                Join Waitlist →
-              </Link>
-              <a href="#categories" className="btn-rose-outline px-7 py-3.5 text-[15px]">
+              <a href="#categories" className="btn-rose px-7 py-3.5 text-[15px]">
                 Explore Gifts
               </a>
             </div>
