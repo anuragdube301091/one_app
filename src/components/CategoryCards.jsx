@@ -6,7 +6,6 @@ const CATEGORIES = [
   {
     to: '/dating',
     key: 'dating',
-    description: 'Verified matches tailored to your values and lifestyle.',
     bg: 'from-[#F9C8DB] via-[#F4A8C0] to-[#E8809A]',
     iconBg: 'bg-rose',
     icon: (
@@ -18,7 +17,6 @@ const CATEGORIES = [
   {
     to: '/travel-buddy',
     key: 'travelBuddy',
-    description: 'Find someone who shares your wanderlust and adventure spirit.',
     bg: 'from-[#B5D8FF] via-[#7CB9F0] to-[#4A9ED8]',
     iconBg: 'bg-coral',
     icon: (
@@ -30,7 +28,6 @@ const CATEGORIES = [
   {
     to: '/party-buddy',
     key: 'partyBuddy',
-    description: 'Connect with people who love the same social scene as you.',
     bg: 'from-[#E8C8F0] via-[#D4A8E8] to-[#B880D0]',
     iconBg: 'bg-coral',
     icon: (
@@ -72,13 +69,14 @@ export default function CategoryCards() {
             </h2>
           </div>
           <p className="section-body max-w-xs text-right hidden sm:block">
-            ONE connects you beyond romance — travel, socials, and real friendships.
+            {t.categories.aside}
           </p>
         </div>
 
         <div ref={gridRef} className="reveal-stagger grid grid-cols-1 sm:grid-cols-3 gap-5">
-          {CATEGORIES.map(({ to, key, description, bg, iconBg, icon }) => {
+          {CATEGORIES.map(({ to, key, bg, iconBg, icon }) => {
             const label = t.categories[key]
+            const description = t.categories[`${key}Desc`]
             return (
             <Link
               key={to}

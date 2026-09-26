@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { signInWithEmailAndPassword } from 'firebase/auth'
 import { auth } from '../../lib/firebase.js'
 import { useAuth } from '../../context/AuthContext.jsx'
-import { devLogin, DEV_EMAIL, DEV_PASSWORD } from '../../lib/devAuth.js'
+import { DEV_EMAIL, DEV_PASSWORD } from '../../lib/devAuth.js'
 
 // Firebase error codes that mean "not connected / not configured"
 const FIREBASE_CONFIG_ERRORS = new Set([
@@ -21,7 +21,7 @@ export default function AdminLogin() {
   const [loading, setLoading] = useState(false)
   const [showDevHint, setShowDevHint] = useState(false)
   const navigate = useNavigate()
-  const { user } = useAuth()
+  const { user, loginDev } = useAuth()
 
   useEffect(() => {
     if (user) navigate('/admin/dashboard', { replace: true })
@@ -33,37 +33,30 @@ export default function AdminLogin() {
     setLoading(true)
 
     try {
+      // Firebase not configured — dev credentials are the only path
+      if (!auth) {
+        if (loginDev(email, password)) return
+        setError('Invalid email or password.')
+        return
+      }
+
       await signInWithEmailAndPassword(auth, email, password)
-      navigate('/admin/dashboard', { replace: true })
+      // onAuthStateChanged updates context, which triggers the redirect effect
     } catch (err) {
       const code = err.code ?? ''
 
-      if (FIREBASE_CONFIG_ERRORS.has(code)) {
-        // Firebase not reachable — try dev fallback
-        if (devLogin(email, password)) {
-          navigate('/admin/dashboard', { replace: true })
-          return
-        }
-        setError('Invalid credentials.')
+      if (code === 'auth/too-many-requests') {
+        setError('Too many failed attempts. Try again later.')
       } else if (
+        FIREBASE_CONFIG_ERRORS.has(code) ||
         code === 'auth/wrong-password' ||
         code === 'auth/user-not-found' ||
-        code === 'auth/invalid-credential'
+        code === 'auth/invalid-credential' ||
+        code === ''
       ) {
-        // Firebase connected but wrong password — still allow dev fallback
-        if (devLogin(email, password)) {
-          navigate('/admin/dashboard', { replace: true })
-          return
-        }
+        if (loginDev(email, password)) return
         setError('Invalid email or password.')
-      } else if (code === 'auth/too-many-requests') {
-        setError('Too many failed attempts. Try again later.')
       } else {
-        // Unknown error — try dev fallback before giving up
-        if (devLogin(email, password)) {
-          navigate('/admin/dashboard', { replace: true })
-          return
-        }
         setError('Login failed. Please try again.')
       }
     } finally {

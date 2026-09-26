@@ -47,9 +47,13 @@ const en = {
     eyebrow: 'Explore Connections',
     title: 'More than just',
     titleItalic: 'dating.',
+    aside: 'ONE connects you beyond romance — travel, socials, and real friendships.',
     dating: 'Dating',
+    datingDesc: 'Verified matches tailored to your values and lifestyle.',
     travelBuddy: 'Travel Buddy',
+    travelBuddyDesc: 'Find someone who shares your wanderlust and adventure spirit.',
     partyBuddy: 'Party Buddy',
+    partyBuddyDesc: 'Connect with people who love the same social scene as you.',
   },
   gift: {
     title: 'Send a gift after you match',
@@ -62,6 +66,59 @@ const en = {
     title: 'Intentional by design.',
     titleItalic: 'Meaningful by choice.',
     body: "We built ONE around a simple conviction: less choice leads to better choices. Every feature serves one goal — helping you find the right person.",
+    steps: [
+      {
+        title: 'Create & Verify',
+        body: 'Build your profile and complete video verification. Every member you meet is exactly who they say they are.',
+      },
+      {
+        title: 'Choose Your Interests',
+        body: 'Pick from 20+ lifestyle categories — travel, cuisine, cinema, fitness, conversations. Your interests shape your five daily matches.',
+      },
+      {
+        title: '5 Intentional Swipes',
+        body: 'Five curated profiles a day — not a bottomless feed. Every swipe gets your full attention, the way it should be.',
+      },
+      {
+        title: 'Connect & Gift',
+        body: 'Match, start real conversations, and express interest with thoughtful gifts delivered privately to their door.',
+      },
+    ],
+  },
+  gifts: {
+    badge: 'Gift Shop',
+    badgeSub: 'Coming with the app',
+    title: 'Say it with a',
+    titleItalic: 'gift.',
+    subtext: 'After matching on ONE, send a thoughtful gift — flowers, chocolates, experiences — delivered privately to their door.',
+    cta: 'Explore Gifts',
+    comingSoon: 'Coming Soon',
+    categoriesEyebrow: 'Gift Categories',
+    categoriesTitle: 'Choose what',
+    categoriesTitleItalic: 'feels right.',
+    categoriesBody: "Every gift ships with a personalized note from you, and the recipient's address stays fully private.",
+    flowers: 'Fresh Flowers',
+    flowersDesc: 'Roses, sunflowers, premium bouquets — same-day delivery across India.',
+    food: 'Treats & Sweets',
+    foodDesc: 'Artisan chocolates, dessert boxes, and curated sweet hampers.',
+    experiences: 'Experiences',
+    experiencesDesc: 'Spa vouchers, dining credits, movie nights, and adventure passes.',
+    personalized: 'Personalized',
+    personalizedDesc: 'Custom photo prints, heartfelt cards, and bespoke gift sets.',
+    howEyebrow: 'How It Works',
+    howTitle: 'Private.',
+    howTitleItalic: 'Thoughtful.',
+    howTitleSuffix: 'Delivered.',
+    howBody: 'Your match never shares their address. We handle the logistics — you just pick the gift.',
+    howSteps: [
+      { title: 'Match on ONE', body: 'Both of you swipe right. The connection is real and verified.' },
+      { title: 'Choose a Gift', body: 'Browse the catalogue and pick something that matches their vibe.' },
+      { title: 'Private Delivery', body: "We deliver it to their door. Your match's address stays private." },
+    ],
+    partnersLabel: 'Delivery Partners',
+    ctaTitle: 'Ready to find your match?',
+    ctaBody: 'Join the waitlist and be the first to experience ONE — the app where gifts make connections real.',
+    ctaButton: 'Get Early Access',
   },
   appDownload: {
     eyebrow: 'Coming Soon To',
@@ -136,9 +193,13 @@ const hi = {
     eyebrow: 'कनेक्शन खोजें',
     title: 'सिर्फ डेटिंग से',
     titleItalic: 'कहीं ज़्यादा.',
+    aside: 'ONE आपको रोमांस से आगे जोड़ता है — यात्रा, सोशल और सच्ची दोस्ती।',
     dating: 'डेटिंग',
+    datingDesc: 'आपके मूल्यों और जीवनशैली के अनुरूप सत्यापित मैच।',
     travelBuddy: 'ट्रैवल बडी',
+    travelBuddyDesc: 'ऐसा साथी खोजें जो आपके घुमक्कड़ी के शौक को साझा करे।',
     partyBuddy: 'पार्टी बडी',
+    partyBuddyDesc: 'उन लोगों से जुड़ें जिन्हें आपकी तरह सोशल सीन पसंद है।',
   },
   gift: {
     title: 'मैच के बाद गिफ्ट भेजें',
@@ -151,6 +212,59 @@ const hi = {
     title: 'जानबूझकर डिज़ाइन किया।',
     titleItalic: 'सोच-समझकर चुनें।',
     body: 'ONE एक सरल विश्वास पर बना है: कम विकल्प, बेहतर विकल्प। हर फीचर एक लक्ष्य पूरा करता है।',
+    steps: [
+      {
+        title: 'प्रोफ़ाइल बनाएं और सत्यापित करें',
+        body: 'अपनी प्रोफ़ाइल बनाएं और वीडियो सत्यापन पूरा करें। हर सदस्य वही है जो वह होने का दावा करता है।',
+      },
+      {
+        title: 'अपनी रुचियां चुनें',
+        body: '20+ लाइफस्टाइल श्रेणियों में से चुनें — यात्रा, खानपान, सिनेमा, फिटनेस, बातचीत। आपकी रुचियां आपके पांच दैनिक मैच तय करती हैं।',
+      },
+      {
+        title: '5 सोच-समझकर स्वाइप',
+        body: 'हर दिन पांच चुनी हुई प्रोफ़ाइल — अंतहीन फीड नहीं। हर स्वाइप को आपका पूरा ध्यान मिलता है।',
+      },
+      {
+        title: 'जुड़ें और गिफ्ट भेजें',
+        body: 'मैच करें, असली बातचीत शुरू करें, और सोच-समझकर चुने गए गिफ्ट के साथ अपनी रुचि जताएं — निजी रूप से उनके दरवाज़े तक।',
+      },
+    ],
+  },
+  gifts: {
+    badge: 'गिफ्ट शॉप',
+    badgeSub: 'ऐप के साथ आ रहा है',
+    title: 'कहिए इसे एक',
+    titleItalic: 'गिफ्ट से.',
+    subtext: 'ONE पर मैच होने के बाद एक सोचा-समझा गिफ्ट भेजें — फूल, चॉकलेट, अनुभव — निजी रूप से उनके दरवाज़े तक।',
+    cta: 'गिफ्ट देखें',
+    comingSoon: 'जल्द आ रहा है',
+    categoriesEyebrow: 'गिफ्ट श्रेणियां',
+    categoriesTitle: 'वही चुनें जो',
+    categoriesTitleItalic: 'सही लगे.',
+    categoriesBody: 'हर गिफ्ट आपके निजी संदेश के साथ जाता है, और पाने वाले का पता पूरी तरह निजी रहता है।',
+    flowers: 'ताज़े फूल',
+    flowersDesc: 'गुलाब, सूरजमुखी, प्रीमियम बुके — पूरे भारत में उसी दिन डिलीवरी।',
+    food: 'मिठाइयां और ट्रीट्स',
+    foodDesc: 'आर्टिज़न चॉकलेट, डेज़र्ट बॉक्स और चुनिंदा स्वीट हैम्पर।',
+    experiences: 'अनुभव',
+    experiencesDesc: 'स्पा वाउचर, डाइनिंग क्रेडिट, मूवी नाइट और एडवेंचर पास।',
+    personalized: 'व्यक्तिगत',
+    personalizedDesc: 'कस्टम फोटो प्रिंट, दिल से लिखे कार्ड और खास गिफ्ट सेट।',
+    howEyebrow: 'यह कैसे काम करता है',
+    howTitle: 'निजी।',
+    howTitleItalic: 'सोचा-समझा।',
+    howTitleSuffix: 'डिलीवर।',
+    howBody: 'आपका मैच कभी अपना पता साझा नहीं करता। लॉजिस्टिक्स हम संभालते हैं — आप बस गिफ्ट चुनें।',
+    howSteps: [
+      { title: 'ONE पर मैच करें', body: 'आप दोनों राइट स्वाइप करें। कनेक्शन असली और सत्यापित है।' },
+      { title: 'गिफ्ट चुनें', body: 'कैटलॉग देखें और उनकी पसंद के अनुसार कुछ चुनें।' },
+      { title: 'निजी डिलीवरी', body: 'हम इसे उनके दरवाज़े तक पहुंचाते हैं। आपके मैच का पता निजी रहता है।' },
+    ],
+    partnersLabel: 'डिलीवरी पार्टनर',
+    ctaTitle: 'अपना मैच खोजने के लिए तैयार हैं?',
+    ctaBody: 'वेटलिस्ट जॉइन करें और ONE का अनुभव करने वाले पहले लोगों में बनें — वह ऐप जहां गिफ्ट कनेक्शन को असली बनाते हैं।',
+    ctaButton: 'अर्ली एक्सेस पाएं',
   },
   appDownload: {
     eyebrow: 'जल्द आ रहा है',
@@ -425,6 +539,23 @@ const da = {
   gift: { ...en.gift, explore: 'Udforsk gaver' },
 }
 
+// Languages are translated to varying degrees. Merging each over `en` means a
+// missing key renders English instead of crashing on an undefined section.
+function deepMerge(base, override) {
+  const out = { ...base }
+  for (const key of Object.keys(override)) {
+    const val = override[key]
+    out[key] =
+      val && typeof val === 'object' && !Array.isArray(val)
+        ? deepMerge(base[key] ?? {}, val)
+        : val
+  }
+  return out
+}
+
+const withFallback = (lang) => deepMerge(en, lang)
+const frFull = withFallback(fr)
+
 export const translations = {
   // English variants (all use English content)
   en,
@@ -435,16 +566,18 @@ export const translations = {
   'en-AU': en,
 
   // Other languages
-  hi,
-  de,
-  fr,
-  'fr-CA': { ...fr, footer: { ...fr.footer, copyright: '© 2024 ONE Dating App. Tous droits réservés.' } },
-  es,
-  'es-MX': es,
-  it,
-  'pt-BR': ptBR,
-  ru,
-  'zh-CN': zhCN,
-  id,
-  da,
+  hi: withFallback(hi),
+  de: withFallback(de),
+  fr: frFull,
+  'fr-CA': deepMerge(frFull, {
+    footer: { copyright: '© 2024 ONE Dating App. Tous droits réservés.' },
+  }),
+  es: withFallback(es),
+  'es-MX': withFallback(es),
+  it: withFallback(it),
+  'pt-BR': withFallback(ptBR),
+  ru: withFallback(ru),
+  'zh-CN': withFallback(zhCN),
+  id: withFallback(id),
+  da: withFallback(da),
 }

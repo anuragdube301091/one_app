@@ -1,7 +1,7 @@
 import { createContext, useContext, useEffect, useState } from 'react'
-import { onAuthStateChanged } from 'firebase/auth'
+import { onAuthStateChanged, signOut } from 'firebase/auth'
 import { auth } from '../lib/firebase.js'
-import { getDevUser, devLogout } from '../lib/devAuth.js'
+import { getDevUser, devLogin, devLogout } from '../lib/devAuth.js'
 
 const AuthContext = createContext(null)
 
@@ -26,13 +26,24 @@ export function AuthProvider({ children }) {
     return unsubscribe
   }, [])
 
-  function logout() {
+  // Must go through here rather than devLogin directly, so the new session
+  // reaches React state — otherwise ProtectedRoute still sees a null user.
+  function loginDev(email, password) {
+    if (!devLogin(email, password)) return false
+    setUser(getDevUser())
+    return true
+  }
+
+  async function logout() {
     devLogout()
+    if (auth?.currentUser) {
+      try { await signOut(auth) } catch {}
+    }
     setUser(null)
   }
 
   return (
-    <AuthContext.Provider value={{ user, loading, logout }}>
+    <AuthContext.Provider value={{ user, loading, loginDev, logout }}>
       {children}
     </AuthContext.Provider>
   )

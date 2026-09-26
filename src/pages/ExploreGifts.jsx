@@ -8,8 +8,7 @@ const GIFT_CATEGORIES = [
   {
     id: 'flowers',
     emoji: '🌹',
-    name: 'Fresh Flowers',
-    desc: 'Roses, sunflowers, premium bouquets — same-day delivery across India.',
+    key: 'flowers',
     color: 'from-[#FCE7EF] to-[#F9C8DB]',
     accent: 'bg-rose-light',
     textAccent: 'text-rose',
@@ -18,8 +17,7 @@ const GIFT_CATEGORIES = [
   {
     id: 'food',
     emoji: '🍫',
-    name: 'Treats & Sweets',
-    desc: 'Artisan chocolates, dessert boxes, and curated sweet hampers.',
+    key: 'food',
     color: 'from-[#FDE8D8] to-[#F9C8A8]',
     accent: 'bg-coral/10',
     textAccent: 'text-coral',
@@ -28,8 +26,7 @@ const GIFT_CATEGORIES = [
   {
     id: 'experiences',
     emoji: '✨',
-    name: 'Experiences',
-    desc: 'Spa vouchers, dining credits, movie nights, and adventure passes.',
+    key: 'experiences',
     color: 'from-[#E8D5F0] to-[#D4B8E8]',
     accent: 'bg-purple-50',
     textAccent: 'text-purple-600',
@@ -38,8 +35,7 @@ const GIFT_CATEGORIES = [
   {
     id: 'personalized',
     emoji: '💌',
-    name: 'Personalized',
-    desc: 'Custom photo prints, heartfelt cards, and bespoke gift sets.',
+    key: 'personalized',
     color: 'from-[#FFF0C8] to-[#FFE099]',
     accent: 'bg-amber-50',
     textAccent: 'text-amber-600',
@@ -56,13 +52,12 @@ const PARTNERS = [
 
 function HowGiftsWork() {
   const ref = useScrollReveal()
+  const { t } = useLang()
   return (
     <div ref={ref} className="reveal">
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mt-16">
         {[
-          { num: '01', title: 'Match on ONE', body: 'Both of you swipe right. The connection is real and verified.' },
-          { num: '02', title: 'Choose a Gift', body: "Browse the catalogue and pick something that matches their vibe." },
-          { num: '03', title: 'Private Delivery', body: "We deliver it to their door. Your match's address stays private." },
+          ...t.gifts.howSteps.map((s, i) => ({ num: String(i + 1).padStart(2, '0'), ...s })),
         ].map(({ num, title, body }) => (
           <div key={num} className="bg-ivory border border-border-rose rounded-2xl p-6 text-center">
             <div className="font-display italic font-black text-5xl text-rose-light leading-none mb-3 select-none">
@@ -102,25 +97,25 @@ export default function ExploreGifts() {
 
           <div ref={heroRef} className="reveal max-w-3xl mx-auto text-center relative">
             <div className="inline-flex items-center gap-2 bg-white border border-border-rose rounded-full px-4 py-2 mb-6">
-              <span className="text-xs font-semibold text-rose tracking-wide uppercase">Gift Shop</span>
+              <span className="text-xs font-semibold text-rose tracking-wide uppercase">{t.gifts.badge}</span>
               <span className="text-rose">·</span>
-              <span className="text-xs text-text-muted">Coming with the app</span>
+              <span className="text-xs text-text-muted">{t.gifts.badgeSub}</span>
             </div>
 
             <h1
               className="font-display font-black text-text-primary leading-none mb-5 text-balance"
               style={{ fontSize: 'clamp(36px, 5vw, 64px)', letterSpacing: '-0.02em' }}
             >
-              Say it with a{' '}
-              <span className="italic text-rose">gift.</span>
+              {t.gifts.title}{' '}
+              <span className="italic text-rose">{t.gifts.titleItalic}</span>
             </h1>
             <p className="text-text-mid text-lg font-light leading-relaxed mb-8 max-w-xl mx-auto">
-              After matching on ONE, send a thoughtful gift — flowers, chocolates, experiences — delivered privately to their door.
+              {t.gifts.subtext}
             </p>
 
             <div className="flex items-center justify-center gap-3 flex-wrap">
               <a href="#categories" className="btn-rose px-7 py-3.5 text-[15px]">
-                Explore Gifts
+                {t.gifts.cta}
               </a>
             </div>
           </div>
@@ -130,13 +125,13 @@ export default function ExploreGifts() {
         <section id="categories" className="py-20 px-4 sm:px-6 lg:px-8 bg-white">
           <div className="max-w-7xl mx-auto">
             <div className="text-center mb-14">
-              <p className="section-eyebrow justify-center mb-3">Gift Categories</p>
+              <p className="section-eyebrow justify-center mb-3">{t.gifts.categoriesEyebrow}</p>
               <h2 className="section-title mb-4">
-                Choose what{' '}
-                <span className="italic text-rose">feels right.</span>
+                {t.gifts.categoriesTitle}{' '}
+                <span className="italic text-rose">{t.gifts.categoriesTitleItalic}</span>
               </h2>
               <p className="section-body max-w-lg mx-auto">
-                Every gift ships with a personalized note from you, and the recipient's address stays fully private.
+                {t.gifts.categoriesBody}
               </p>
             </div>
 
@@ -144,7 +139,10 @@ export default function ExploreGifts() {
               ref={cardsRef}
               className="reveal-stagger grid grid-cols-1 sm:grid-cols-2 gap-5"
             >
-              {GIFT_CATEGORIES.map(({ id, emoji, name, desc, color, textAccent, items }) => (
+              {GIFT_CATEGORIES.map(({ id, key, emoji, color, textAccent, items }) => {
+                const name = t.gifts[key]
+                const desc = t.gifts[`${key}Desc`]
+                return (
                 <div
                   key={id}
                   className="group relative rounded-3xl overflow-hidden border border-border-rose bg-white hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
@@ -156,7 +154,7 @@ export default function ExploreGifts() {
                     </span>
                     {/* Coming soon ribbon */}
                     <div className="absolute top-4 right-4 bg-white/80 backdrop-blur-sm border border-white rounded-full px-3 py-1">
-                      <span className="text-[10px] font-bold tracking-widest uppercase text-text-muted">Coming Soon</span>
+                      <span className="text-[10px] font-bold tracking-widest uppercase text-text-muted">{t.gifts.comingSoon}</span>
                     </div>
                   </div>
 
@@ -178,7 +176,8 @@ export default function ExploreGifts() {
                     </ul>
                   </div>
                 </div>
-              ))}
+                )
+              })}
             </div>
           </div>
         </section>
@@ -187,14 +186,14 @@ export default function ExploreGifts() {
         <section className="py-20 px-4 sm:px-6 lg:px-8 bg-cream">
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-2">
-              <p className="section-eyebrow justify-center mb-3">How It Works</p>
+              <p className="section-eyebrow justify-center mb-3">{t.gifts.howEyebrow}</p>
               <h2 className="section-title mb-4">
-                Private.{' '}
-                <span className="italic text-rose">Thoughtful.</span>{' '}
-                Delivered.
+                {t.gifts.howTitle}{' '}
+                <span className="italic text-rose">{t.gifts.howTitleItalic}</span>{' '}
+                {t.gifts.howTitleSuffix}
               </h2>
               <p className="section-body max-w-lg mx-auto">
-                Your match never shares their address. We handle the logistics — you just pick the gift.
+                {t.gifts.howBody}
               </p>
             </div>
             <HowGiftsWork />
@@ -205,7 +204,7 @@ export default function ExploreGifts() {
         <section className="py-16 px-4 sm:px-6 lg:px-8 bg-white">
           <div ref={partnersRef} className="reveal max-w-4xl mx-auto text-center">
             <p className="text-xs font-semibold tracking-[0.14em] uppercase text-text-muted mb-8">
-              Delivery Partners
+              {t.gifts.partnersLabel}
             </p>
             <div className="flex items-center justify-center gap-6 flex-wrap">
               {PARTNERS.map(({ name, category, icon }) => (
@@ -228,16 +227,16 @@ export default function ExploreGifts() {
         <section className="bg-text-primary py-16 px-4 sm:px-6 lg:px-8">
           <div className="max-w-2xl mx-auto text-center">
             <h2 className="font-display font-black text-white text-3xl italic mb-4">
-              Ready to find your match?
+              {t.gifts.ctaTitle}
             </h2>
             <p className="text-white/50 text-sm mb-8 leading-relaxed">
-              Join the waitlist and be the first to experience ONE — the app where gifts make connections real.
+              {t.gifts.ctaBody}
             </p>
             <button
               onClick={goToEarlyAccess}
               className="inline-block bg-rose text-white font-semibold rounded-xl px-8 py-4 text-[15px] hover:bg-rose-dark transition-colors"
             >
-              Get Early Access →
+              {t.gifts.ctaButton} →
             </button>
           </div>
         </section>

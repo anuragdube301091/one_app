@@ -1,7 +1,5 @@
 import { useState, useEffect, useCallback, useRef } from 'react'
-import { signOut } from 'firebase/auth'
 import { useNavigate } from 'react-router-dom'
-import { auth } from '../../lib/firebase.js'
 import { useAuth } from '../../context/AuthContext.jsx'
 import { getRegistrations, exportRegistrationsCSV } from '../../lib/api.js'
 import { DEV_EMAIL } from '../../lib/devAuth.js'
@@ -300,7 +298,7 @@ export default function AdminDashboard() {
   }
 
   async function handleSignOut() {
-    if (isDevMode) { logout() } else { await signOut(auth) }
+    await logout()
     navigate('/admin/login', { replace: true })
   }
 
