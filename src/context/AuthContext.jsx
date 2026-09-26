@@ -10,11 +10,15 @@ export function AuthProvider({ children }) {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
+    if (!auth) {
+      // Firebase not configured — dev auth only
+      setLoading(false)
+      return
+    }
     const unsubscribe = onAuthStateChanged(auth, (firebaseUser) => {
       if (firebaseUser) {
         setUser(firebaseUser)
       } else {
-        // Firebase says no real user — keep dev session if one exists
         setUser(getDevUser() ?? null)
       }
       setLoading(false)
