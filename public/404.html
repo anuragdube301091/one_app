@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>ONE</title>
+    <script>
+      // GitHub Pages SPA redirect (spa-github-pages)
+      // Encodes the full path into ?/ so index.html can restore it via history.replaceState
+      var l = window.location;
+      l.replace(
+        l.protocol + '//' + l.host +
+        l.pathname.split('/').slice(0, 2).join('/') +
+        '/?/' +
+        l.pathname.slice(1).replace(/&/g, '~and~') +
+        (l.search ? '&' + l.search.slice(1).replace(/&/g, '~and~') : '') +
+        l.hash
+      );
+    </script>
+  </head>
+  <body></body>
+</html>
